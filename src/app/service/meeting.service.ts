@@ -45,8 +45,27 @@ export class MeetingService {
     return this.http.get(url, this.httpOptions);
   }
 
-  getAll() {
-    const url = `${this.MOBILE_BASS_URL}/find?table=${this.tableName}`
+  getAll(pageNumber: number = 0, totalRecordsPerPage: number = 5, sortField: string, filters: string) {
+
+    let parameter = '';
+
+    if (pageNumber != null) {
+      parameter += `&pageNumber=${pageNumber}`
+    }
+
+    if (totalRecordsPerPage != null) {
+      parameter += `&totalRecordsPerPage=${totalRecordsPerPage}`
+    }
+
+    if (sortField != null) {
+      parameter += `&sortField=${sortField}`
+    }
+
+    if (filters != null) {
+      parameter += `&filters=${filters}`
+    }
+
+    const url = `${this.MOBILE_BASS_URL}/find?table=${this.tableName}${parameter}`
 
     return this.http.get(url, this.httpOptions);
   }
