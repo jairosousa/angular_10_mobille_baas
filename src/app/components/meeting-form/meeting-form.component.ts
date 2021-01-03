@@ -1,4 +1,5 @@
 import { Component, Inject, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
@@ -8,14 +9,25 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 })
 export class MeetingFormComponent implements OnInit {
 
-
+  public form: FormGroup;
 
   constructor(
+    private fb: FormBuilder,
     public dialogRef: MatDialogRef<MeetingFormComponent>,
     @Inject(MAT_DIALOG_DATA) public data: string
   ) { }
 
   ngOnInit(): void {
+
+    this.form = this.fb.group({
+      id: [null],
+      name: ['', Validators.required],
+      subject: ['', Validators.required],
+      reponsible: ['', Validators.required],
+      date: ['', Validators.required],
+      time: ['', Validators.required]
+    })
+
   }
 
   cancel(): void {
