@@ -1,3 +1,18 @@
+<div class="container" style="margin-left: 1%;">
+    <mat-form-field class="example-full-width">
+        <mat-label>Name</mat-label>
+        <input matInput placeholder="" [(ngModel)]="meetingNameFind">
+    </mat-form-field>&nbsp;
+    <mat-form-field class="example-full-width">
+        <mat-label>Date</mat-label>
+        <input matInput placeholder="date" [(ngModel)]="meetingDateFind" [matDatepicker]="data">
+        <mat-datepicker-toggle matSuffix [for]="data"></mat-datepicker-toggle>
+        <mat-datepicker #data></mat-datepicker>
+    </mat-form-field>
+    <button mat-raised-button color="primary" (click)="findByParameter()">Find</button>
+</div>
+
+
 <table mat-table [dataSource]="meetings" class="mat-elevation-z8">
 
     <!-- Name Column -->
