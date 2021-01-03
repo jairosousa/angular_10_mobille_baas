@@ -30,6 +30,10 @@ export class MeetingFormComponent implements OnInit {
 
   }
 
+  save(): void {
+    this.dialogRef.close();
+  }
+
   cancel(): void {
     this.dialogRef.close();
   }

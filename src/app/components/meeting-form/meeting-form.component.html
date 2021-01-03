@@ -14,7 +14,7 @@
 
     <mat-form-field class="example-full-width">
         <mat-label>Reponsible</mat-label>
-        <input matInput placeholder="reponsible" formControlName="name" name="reponsible">
+        <input matInput placeholder="reponsible" formControlName="reponsible" name="reponsible">
     </mat-form-field>
 
     <div fxLayout="row">
@@ -29,15 +29,17 @@
         <div fxFlex="50" fxFill fxLayoutAlign="start center">
             <mat-form-field class="example-full-width">
                 <mat-label>Time</mat-label>
-                <input matInput type="time" placeholder="time" formControlName="time" name="time" #time>
+                <input matInput type="time" placeholder="time" formControlName="time" #time>
             </mat-form-field>
 
         </div>
     </div>
 
-
-
     <div mat-mat-dialog-actions>
         <button mat-button (click)="cancel()">Cancel</button>
+        <button mat-raised-button color="primary" (click)="save()" [disabled]="form.invalid">
+          <mat-icon aria-hidden="false">add</mat-icon>
+          Save
+        </button>
     </div>
 </form>
