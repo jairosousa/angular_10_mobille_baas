@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { PageEvent } from '@angular/material/paginator';
 import { MeetingService } from '../../service/meeting.service';
 
 @Component({
@@ -42,6 +43,10 @@ export class MeetingListComponent implements OnInit {
           console.log('Erro', err.headers);
 
         })
+  }
+
+  getServerData(event?: PageEvent) {
+    this.findAll(event.pageIndex, 'date', null);
   }
 
 }

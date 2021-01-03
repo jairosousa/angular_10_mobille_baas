@@ -43,14 +43,15 @@ export class MeetingFormComponent implements OnInit {
   create() {
     this.service.insert(this.form.value)
       .subscribe(result => {
-        console.log('Resultado: ', result),
-          err => console.log('Erro: ', err);
+        console.log('Resultado: ', result)
+        this.dialogRef.close(true);
+        this.form.reset();
+        window.location.reload();
 
+      }, err => {
+        err => console.log('Erro: ', err);
       });
 
-    this.dialogRef.close(true);
-    this.form.reset();
-    // window.location.reload();
   }
 
 
@@ -58,13 +59,14 @@ export class MeetingFormComponent implements OnInit {
     this.service.update(this.form.value)
       .subscribe(result => {
         console.log('Resultado: ', result),
-          err => console.log('Erro: ', err);
+          this.dialogRef.close(true);
+        this.form.reset();
+        window.location.reload();
 
+      }, err => {
+        err => console.log('Erro: ', err);
       });
 
-    this.dialogRef.close(true);
-    this.form.reset();
-    // window.location.reload();
   }
 
   cancel(): void {

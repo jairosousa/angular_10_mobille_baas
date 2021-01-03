@@ -17,13 +17,15 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
 import { MeetingFormComponent } from './components/meeting-form/meeting-form.component';
 import { MeetingListComponent } from './components/meeting-list/meeting-list.component';
+import { LocaDateTimePipe } from './pipe/loca-date-time.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     MeetingListComponent,
-    MeetingFormComponent
+    MeetingFormComponent,
+    LocaDateTimePipe
   ],
   imports: [
     BrowserModule,
