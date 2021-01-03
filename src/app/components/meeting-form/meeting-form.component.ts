@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject, OnInit, Optional } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MeetingService } from '../../service/meeting.service';
@@ -12,12 +12,16 @@ export class MeetingFormComponent implements OnInit {
 
   public form: FormGroup;
 
+  public idEdit: string;
+
   constructor(
     private fb: FormBuilder,
     public dialogRef: MatDialogRef<MeetingFormComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: string,
+    @Optional() @Inject(MAT_DIALOG_DATA) public data: string,
     private service: MeetingService
-  ) { }
+  ) {
+    this.idEdit = data;
+  }
 
   ngOnInit(): void {
 
@@ -28,8 +32,29 @@ export class MeetingFormComponent implements OnInit {
       reponsible: ['', Validators.required],
       date: ['', Validators.required],
       time: ['', Validators.required]
-    })
+    });
 
+    if (this.idEdit != null) {
+      this.getById();
+    }
+
+  }
+
+  getById() {
+    this.service.getById(this.idEdit)
+      .subscribe(result => {
+        this.form = this.fb.group({
+          id: [result['id'], Validators.required],
+          name: [result['name'], Validators.required],
+          subject: [result['subject'], Validators.required],
+          reponsible: [result['reponsible'], Validators.required],
+          date: [result['date'], Validators.required],
+          time: [result['time'], Validators.required]
+        });
+
+      }, err => {
+        err => console.log('Erro: ', err);
+      });
   }
 
   save(): void {

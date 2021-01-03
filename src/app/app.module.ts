@@ -18,6 +18,7 @@ import { HomeComponent } from './components/home/home.component';
 import { MeetingFormComponent } from './components/meeting-form/meeting-form.component';
 import { MeetingListComponent } from './components/meeting-list/meeting-list.component';
 import { LocaDateTimePipe } from './pipe/loca-date-time.pipe';
+import { MeetingDeleteComponent } from './components/meeting-delete/meeting-delete.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { LocaDateTimePipe } from './pipe/loca-date-time.pipe';
     HomeComponent,
     MeetingListComponent,
     MeetingFormComponent,
-    LocaDateTimePipe
+    LocaDateTimePipe,
+    MeetingDeleteComponent
   ],
   imports: [
     BrowserModule,

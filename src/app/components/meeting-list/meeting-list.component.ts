@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { PageEvent } from '@angular/material/paginator';
 import { MeetingService } from '../../service/meeting.service';
+import { MeetingDeleteComponent } from '../meeting-delete/meeting-delete.component';
+import { MeetingFormComponent } from '../meeting-form/meeting-form.component';
 
 @Component({
   selector: 'app-meeting-list',
@@ -47,6 +49,34 @@ export class MeetingListComponent implements OnInit {
 
   getServerData(event?: PageEvent) {
     this.findAll(event.pageIndex, 'date', null);
+  }
+
+  edit(id: string) {
+    const dialogRef = this.dialog.open(MeetingFormComponent, {
+      width: '500px',
+      data: id
+    });
+
+    dialogRef.afterClosed()
+      .subscribe(result => {
+        console.log('The dialog was closed');
+
+      })
+
+  }
+
+  confirmDelete(id: string) {
+    const dialogRef = this.dialog.open(MeetingDeleteComponent, {
+      width: '500px',
+      data: id
+    });
+
+    dialogRef.afterClosed()
+      .subscribe(result => {
+        console.log('The dialog was closed');
+
+      })
+
   }
 
 }
